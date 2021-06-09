@@ -1,0 +1,42 @@
+<ng-container>
+
+    <h3>
+        Review your items and checkout
+        <button style="float: right;" mat-icon-button [mat-dialog-close]>
+            <mat-icon>cancel</mat-icon>
+        </button>
+    </h3>
+
+    <div>
+
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Small Box</mat-card-title>
+                <mat-card-subtitle>
+                    DeliveryCharges:100
+                    <br />
+                    <strong> at checkout:{{data.Total}} </strong>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions style="text-align: right;">
+                <button type="button" mat-button color="accent" (click)="completeOrder()">
+                    Complete my order <mat-icon>check</mat-icon>
+                </button>
+                
+            </mat-card-actions>
+        </mat-card>
+
+        <h3>Delivery Address</h3>
+        <address>
+            {{data.Address.name}}<br />
+            {{data.Address.address}},
+            {{data.Address.address2}}<br />
+            {{data.Address.city}},
+            {{data.Address.state}}<br />
+            {{data.Address.postalCode}}<br />
+            {{data.Address.phoneNumber}}<br />
+
+        </address>
+    </div>
+
+</ng-container>

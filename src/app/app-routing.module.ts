@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'smallBox',outlet:'centercontent',loadChildren: () => import('./small-box/small-box.module').then(m => m.SmallBoxModule) },
+  { path: 'largeBox',outlet:'centercontent' ,loadChildren: () => import('./large-box/large-box.module').then(m => m.LargeBoxModule) },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

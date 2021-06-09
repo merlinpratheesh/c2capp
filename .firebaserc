@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "c2capp-b76e4": {
+      "hosting": {
+        "c2capp": [
+          "c2capp-b76e4"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "c2capp-b76e4"
+  }
+}
