@@ -13,7 +13,7 @@
 </mat-toolbar>
 <div fxLayout="row">
   <button style="width: 150px;" mat-stroked-button color="primary"
-      [routerLink]="[{ outlets: {'centercontent': ['smallBox']} }]">Small box</button>
+      [routerLink]="[{ outlets: {'centercontent': ['smallBox']} } ]">Small box</button>
   <button style="width: 150px;" mat-stroked-button color="primary"
       [routerLink]="[{ outlets: { 'centercontent': ['largeBox']}  }]">Large box</button>
 
@@ -31,8 +31,5 @@
     </mat-autocomplete>
   </mat-form-field>
 </form>
-
-
-
 
 <router-outlet name='centercontent'></router-outlet>

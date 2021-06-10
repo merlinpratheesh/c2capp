@@ -1,0 +1,5 @@
+<p>home works!</p>
+<mat-card *ngFor="let picture of profile" colspan="3" rowHeight='50vh'
+style= "margin-left:70px; width: 150px; ">
+<img [src]="picture  | async"    alt="profile image" width="100" height="100">
+</mat-card>

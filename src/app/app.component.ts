@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { User } from './service/userdata.service';
 import { map, startWith } from "rxjs/operators";
 import { Router } from '@angular/router';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 
 @Component({
@@ -22,7 +23,9 @@ export class AppComponent implements OnInit {
   ];
   filteredOptions: Observable<User[]> | undefined;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private storage: AngularFireStorage) { 
+
+  }
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
