@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/build-angular": "^0.13.0",
     "@angular/animations": "~12.0.3",
     "@angular/cdk": "^12.0.3",
     "@angular/common": "~12.0.3",
@@ -26,7 +27,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@google-pay/button-angular": "^2.3.0",
-    "firebase": "^7.0 || ^8.0",
+    "firebase": "^8.6.7",
     "ngx-sharebuttons": "^8.0.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
@@ -34,8 +35,7 @@
   },
   "devDependencies": {
     "@angular-devkit/architect": ">= 0.900 < 0.1300",
-    "@angular-devkit/build-angular": "~12.0.3",
-    "@angular/cli": "~12.0.3",
+    "@angular/cli": "^12.0.4",
     "@angular/compiler-cli": "~12.0.3",
     "@angular/flex-layout": "*",
     "@types/jasmine": "~3.6.0",

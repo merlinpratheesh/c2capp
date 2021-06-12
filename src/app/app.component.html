@@ -6,10 +6,13 @@
       <span  fxHide fxShow.gt-xs>C2c</span>
       <span  fxShow fxHide.gt-xs>C2c</span>
       <span fxFlex> </span>
-
+      <div class="text-right">
+        <button type="button" (click)="openAddModal()" >Rent</button>
+      </div>
 
 
   </mat-toolbar-row>
+
 </mat-toolbar>
 <div fxLayout="row">
   <button style="width: 150px;" mat-stroked-button color="primary"
@@ -31,5 +34,8 @@
     </mat-autocomplete>
   </mat-form-field>
 </form>
+
+
+
 
 <router-outlet name='centercontent'></router-outlet>

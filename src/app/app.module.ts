@@ -13,10 +13,12 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment'
 
 import { GooglePayButtonModule} from '@google-pay/button-angular';
+import { CreateitemComponent } from './createitem/createitem.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CreateitemComponent
 
   ],
   imports: [

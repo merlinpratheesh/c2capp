@@ -5,6 +5,8 @@ import { User } from './service/userdata.service';
 import { map, startWith } from "rxjs/operators";
 import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateitemComponent } from './createitem/createitem.component';
 
 
 @Component({
@@ -21,9 +23,12 @@ export class AppComponent implements OnInit {
     { name: "Vetturnimadam", value: "Vetturnimadam" },
     { name: "Vadasery", value: "vadasery" }
   ];
+
+
+
   filteredOptions: Observable<User[]> | undefined;
 
-  constructor(private router: Router,private storage: AngularFireStorage) { 
+  constructor(private router: Router,private storage: AngularFireStorage,public dialog: MatDialog) { 
 
   }
 
@@ -55,4 +60,10 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/mymapdetails']);
 
   }
+
+  openAddModal() {
+    let dialogRef = this.dialog.open(CreateitemComponent, {
+     width: '100%'
+   });
+ }
 }
