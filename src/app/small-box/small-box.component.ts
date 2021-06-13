@@ -21,4 +21,16 @@ export interface Tile {
 
 })
 
-export class SmallBoxComponent {}
+export class SmallBoxComponent {
+  place: any;
+  item: any;
+
+  
+  ngOnInit(): void {
+
+    this.place=history.state.data;
+    console.log(this.place);
+
+    
+  }
+}

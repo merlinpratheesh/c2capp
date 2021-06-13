@@ -26,14 +26,28 @@
 
 <form class="example-form">
   <mat-form-field class="example-full-width">
-    <input type="text" placeholder="Assignee" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option.name}}
+    <input type="text" placeholder="Assignee" aria-label="Assignee" matInput [formControl]="myLocationControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getLocation($event.option.value)' 
+    [displayWith]="displayFn" >
+      <mat-option *ngFor="let location of filteredLocations | async" [value]="location">
+        {{location.place}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 </form>
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input type="text" placeholder="Assignee" aria-label="Assignee" matInput [formControl]="myItemControl" [matAutocomplete]="auto1">
+    <mat-autocomplete #auto1="matAutocomplete" (optionSelected)='getItem($event.option.value)'
+    [displayWith]="displayFn1" >
+      <mat-option *ngFor="let item of filteredItems | async" [value]="item">
+        {{item.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+
 
 
 

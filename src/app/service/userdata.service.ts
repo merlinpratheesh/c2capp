@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
-import "firbase/firestore";
 import firebase from 'firebase/app';
 
-
-
-export interface User {
+export interface Location {
+  place: string;
+  value: string;
+}
+export interface Item {
   name: string;
   value: string;
 }
@@ -29,7 +30,7 @@ export class UserdataService {
   }
 
   privateProjectExists(uid: string): any {
-    return this.db.doc(`projectList/` + uid).valueChanges().pipe(first()).toPromise();
+    return this.db.doc(`itemList/` + 'uid').valueChanges().pipe(first()).toPromise();
   }
   async privateProjectfindOrCreate(uid: string): Promise<item> {
     const project: item = await this.privateProjectExists(uid);
@@ -47,18 +48,12 @@ export class UserdataService {
     await this.db.firestore.runTransaction(() => {
       const promise = Promise.all([
 
-        this.db.collection('projectList/').doc('uid').set(
+        this.db.collection('itemList/').doc('uid').set(
           {
             private: firebase.firestore.FieldValue.arrayUnion(updatedProject),
           }),
 
-        this.db.collection('profile/').doc('uid').update(
-          {
-            numberOfProjects: firebase.firestore.FieldValue.increment(1),
-
-          }),
-
-        this.db.collection('projectList/').doc('publicProject').update(
+        this.db.collection('itemList/').doc('publicItem').update(
           {
             public: firebase.firestore.FieldValue.arrayUnion(updatedProject),
 
@@ -73,21 +68,17 @@ export class UserdataService {
     await this.db.firestore.runTransaction(() => {
       const promise = Promise.all([
 
-        this.db.collection('projectList/').doc('uid').update(
+        this.db.collection('itemList/').doc('uid').update(
           {
             private: firebase.firestore.FieldValue.arrayUnion(updatedProject),
           }),
 
-        this.db.collection('projectList/').doc('publicProject').update(
+        this.db.collection('itemList/').doc('publicItem').update(
           {
             public: firebase.firestore.FieldValue.arrayUnion(updatedProject),
 
           }),
-        this.db.collection('profile/').doc('uid').update(
-          {
-            numberOfProjects: firebase.firestore.FieldValue.increment(1),
 
-          })
       ]);
 
       return promise;

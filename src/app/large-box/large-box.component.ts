@@ -12,7 +12,15 @@ import { CheckoutDialog } from './checkout/checkout-dialog.component';
   styleUrls: ['./large-box.component.scss']
 })
 export class LargeBoxComponent  {
+  item: any;
 
+  ngOnInit(): void {
+
+    this.item=history.state.data;
+    console.log(this.item);
+
+    
+  }
   
 
 }

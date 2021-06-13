@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { finalize } from 'rxjs/operators';
 import { item, UserdataService } from '../service/userdata.service';
@@ -13,6 +14,8 @@ export class CreateitemComponent implements OnInit {
 
   messages: string[] = [];
   uid:any;
+  itemValues?: FormGroup;
+
 
 
   constructor(private afStorage: AngularFireStorage, private developmentservice: UserdataService, public dialogRef: MatDialogRef<CreateitemComponent>) { }
@@ -43,19 +46,23 @@ export class CreateitemComponent implements OnInit {
   }
   addItem() {
    
-    console.log(this.messages );
+    this.itemValues = new FormGroup({
+      imageUrl: new FormControl(this.messages),
+    });
+
+    console.log(this.itemValues.value);
     this.dialogRef.close(true)
 
     if (this.messages  !== undefined) {
       this.developmentservice.privateProjectfindOrCreate(this.uid).then((success: item) => {
         console.log('391', success);
         if (success === undefined) {
-          const Newmydialog = this.messages;
+          const Newmydialog = this.itemValues?.value;
           this.developmentservice.createnewproject(Newmydialog, this.uid);
           return (null);
         } else {
           //get data- display/update
-          const mydialog = this.messages;
+          const mydialog = this.itemValues?.value;
           this.developmentservice.createnewprojectExistingId(mydialog, this.uid);
           return (null);
         }
