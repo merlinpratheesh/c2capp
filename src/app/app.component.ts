@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Item, Location } from './service/userdata.service';
+import { Item, Location, UserdataService } from './service/userdata.service';
 import { map, startWith } from "rxjs/operators";
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateitemComponent } from './createitem/createitem.component';
@@ -37,9 +37,13 @@ export class AppComponent implements OnInit {
 
   filteredLocations: Observable<Location[]> | undefined;
   filteredItems: Observable<Item[]> | undefined;
+  place: any;
+  item:any;
+  
+
 
   constructor(private router: Router,private storage: AngularFireStorage,
-    public dialog: MatDialog) { 
+    public dialog: MatDialog, private data: UserdataService) { 
 
   }
 
@@ -93,11 +97,18 @@ export class AppComponent implements OnInit {
  }
  
  getLocation(place: any){
+  this.place=place.value;
+  this.data.locationService(this.place); 
   this.router.navigate(['', { outlets: { 'centercontent': ['smallBox'] } }],{state:{data:place.value}});
+ 
   console.log(place.value);
- }
+}
  getItem(item: any){
-  this.router.navigate(['', { outlets: { 'centercontent': ['largeBox'] } }],{state:{data:item.value}});
+  this.item=item.value;
+  this.data.itemService(this.item); 
+
+  this.router.navigate(['', { outlets: { 'centercontent': ['smallBox'] } }],{state:{data:item.value}});
+
   console.log(item.value);
  }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { first } from 'rxjs/operators';
 import firebase from 'firebase/app';
 
@@ -12,8 +12,8 @@ export interface Item {
   name: string;
   value: string;
 }
-export interface item {
-title:any;
+export interface finalItem {
+ 
   imageUrl?: string;
 
 }
@@ -24,16 +24,43 @@ title:any;
 
 export class UserdataService {
   leftMenuPress = new Subject();
-  
-  constructor(private db: AngularFirestore) { 
-    
+
+  locationService$: Observable<any>;
+  private locationServiceSubject = new BehaviorSubject<any>(this.locationService);
+
+  itemService$: Observable<any>;
+  private itemServiceSubject = new BehaviorSubject<any>(this.itemService);
+
+
+
+
+
+  constructor(private db: AngularFirestore) {
+
+    this.locationService$ = this.locationServiceSubject.asObservable();
+
+    this.itemService$ = this.itemServiceSubject.asObservable();
+
+
+
   }
+  locationService(data: any) {
+    console.log(data);
+    this.locationServiceSubject.next(data);
+  }
+
+  itemService(data: any) {
+    console.log(data);
+    this.itemServiceSubject.next(data);
+  }
+
+
 
   privateProjectExists(uid: string): any {
     return this.db.doc(`itemList/` + 'uid').valueChanges().pipe(first()).toPromise();
   }
-  async privateProjectfindOrCreate(uid: string): Promise<item> {
-    const project: item = await this.privateProjectExists(uid);
+  async privateProjectfindOrCreate(uid: string): Promise<finalItem> {
+    const project: finalItem = await this.privateProjectExists(uid);
     console.log('110 returned', project);
 
     if (project) {

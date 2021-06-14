@@ -1,5 +1,32 @@
 <div>
-  Smallbox
+ view child
   {{place}}
 </div>
+<div style="background-color:green;">
+  location Service
+   {{locationData}}
+ </div>
 
+
+ <div style="background-color:red;">
+  Item Service
+
+    {{itemData}}
+
+</div>
+
+<div *ngIf="(filterdItems |async) as projectDetails; else waitingload ">
+ <div *ngFor="let details of projectDetails">
+{{details.imageUrl}}
+<img [src]=details.imageUrl  alt="profile image" width="100" height="100">
+
+ </div>
+
+</div>
+
+
+<ng-template #waitingload>
+
+  <mat-spinner>
+  </mat-spinner>
+</ng-template>

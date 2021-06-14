@@ -14,11 +14,13 @@ import { environment } from '../environments/environment'
 
 import { GooglePayButtonModule} from '@google-pay/button-angular';
 import { CreateitemComponent } from './createitem/createitem.component';
+import { LocationBasedComponent } from './location-based/location-based.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateitemComponent
+    CreateitemComponent,
+    LocationBasedComponent
 
   ],
   imports: [
@@ -32,6 +34,7 @@ import { CreateitemComponent } from './createitem/createitem.component';
     AngularFireAuthModule, // auth
     AngularFireStorageModule // storage
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

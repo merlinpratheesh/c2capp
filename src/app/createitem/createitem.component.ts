@@ -3,7 +3,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { finalize } from 'rxjs/operators';
-import { item, UserdataService } from '../service/userdata.service';
+import { finalItem, Item, UserdataService } from '../service/userdata.service';
 
 @Component({
   selector: 'app-createitem',
@@ -54,7 +54,7 @@ export class CreateitemComponent implements OnInit {
     this.dialogRef.close(true)
 
     if (this.messages  !== undefined) {
-      this.developmentservice.privateProjectfindOrCreate(this.uid).then((success: item) => {
+      this.developmentservice.privateProjectfindOrCreate(this.uid).then((success: finalItem) => {
         console.log('391', success);
         if (success === undefined) {
           const Newmydialog = this.itemValues?.value;
